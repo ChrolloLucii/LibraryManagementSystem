@@ -129,8 +129,15 @@ namespace LibraryManagementSystem.Services
 
         public async Task UpdateBookAsync(Book book)
         {
-            _context.Books.Update(book);
-            await _context.SaveChangesAsync();
+           var existingBook = await _context.Books.FindAsync(book.Id);
+           if (existingBook != null){
+            _context.Entry(existingBook).CurrentValues.SetValues(book);
+           }
+           else {
+            _context.Books.Attach(book);
+            _context.Entry(book).State = EntityState.Modified;
+           }
+           await _context.SaveChangesAsync();
         }
 
         public async Task DeleteBookAsync(int id)

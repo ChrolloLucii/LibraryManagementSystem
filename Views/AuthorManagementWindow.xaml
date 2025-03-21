@@ -1,0 +1,26 @@
+<Window x:Class="LibraryManagementSystem.Views.AuthorManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление авторами" Height="400" Width="600">
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left">
+      <Button Content="Добавить" Command="{Binding AddAuthorCommand}" Margin="5" Padding="5"/>
+      <Button Content="Редактировать" Command="{Binding EditAuthorCommand}" Margin="5" Padding="5"/>
+      <Button Content="Удалить" Command="{Binding DeleteAuthorCommand}" Margin="5" Padding="5"/>
+    </StackPanel>
+    <DataGrid Grid.Row="1" ItemsSource="{Binding Authors}" AutoGenerateColumns="False"
+              SelectedItem="{Binding SelectedAuthor}" Margin="5">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+        <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
+        <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
+        <DataGridTextColumn Header="Страна" Binding="{Binding Country}" Width="*"/>
+        <DataGridTextColumn Header="Дата рождения" Binding="{Binding BirthDate, StringFormat={}{0:d}}" Width="*"/>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</Window>

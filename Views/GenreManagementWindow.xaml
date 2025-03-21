@@ -1,0 +1,24 @@
+<Window x:Class="LibraryManagementSystem.Views.GenreManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление жанрами" Height="400" Width="600">
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left">
+      <Button Content="Добавить" Command="{Binding AddGenreCommand}" Margin="5" Padding="5"/>
+      <Button Content="Редактировать" Command="{Binding EditGenreCommand}" Margin="5" Padding="5"/>
+      <Button Content="Удалить" Command="{Binding DeleteGenreCommand}" Margin="5" Padding="5"/>
+    </StackPanel>
+    <DataGrid Grid.Row="1" ItemsSource="{Binding Genres}" AutoGenerateColumns="False"
+              SelectedItem="{Binding SelectedGenre}" Margin="5">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+        <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="2*"/>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</Window>
